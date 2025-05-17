@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import json
 import threading
 import os
@@ -26,6 +29,7 @@ target_domain = data["target_domain"]
 with open('n0kovo_subdomains/n0kovo_subdomains_tiny.txt','r') as file:
     while True:
         line = file.readline()
+        line = line.strip()
         os.system(f'dig {line}.{target_domain}')
         if not line:
             break
