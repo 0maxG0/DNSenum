@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#目的:あるドメインのサブドメインを列挙する
+#Quick simple subdomain enum
+#Use amass together
 
 import json
-import threading
 import os
 
 #jsonデータの読み取り
@@ -11,17 +11,6 @@ data = json.loads(json_data)
 
 #ターゲットドメイン名の取得
 target_domain = data["target_domain"]
-
-#マルチスレッドの作成
-# t1 = threading.Thread(target, args)
-# t2 = threading.Thread(target, args)
-#
-# t1.start()
-# t2.start()
-#
-# t1.join()
-# t2.join()
-
 
 #ワードリストの読み込み(zone tranferが失敗した場合)
 with open('n0kovo_subdomains/n0kovo_subdomains_tiny.txt', 'r') as file:
@@ -32,4 +21,5 @@ with open('n0kovo_subdomains/n0kovo_subdomains_tiny.txt', 'r') as file:
         if not line:
             break
 
-#結果をファイル出力する
+#cat amass.txt | grep -v aaaa_record | grep -v ASN | grep -v : | cut -d' ' -f1 | sed -E 's/::.*$//; s/\/[0-9]+$//'
+
