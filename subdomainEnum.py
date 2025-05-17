@@ -30,7 +30,7 @@ with open('n0kovo_subdomains/n0kovo_subdomains_tiny.txt','r') as file:
     while True:
         line = file.readline()
         line = line.strip()
-        os.system(f'dig {line}.{target_domain}')
+        os.system(f'dig {line}.{target_domain} +short')
         if not line:
             break
 
