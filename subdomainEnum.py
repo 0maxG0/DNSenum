@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#目的:あるドメインのサブドメインを列挙する
 
 import json
 import threading
@@ -8,8 +8,6 @@ import os
 #jsonデータの読み取り
 json_data = '{"target_domain":"example.com","wordlist":"n0kovo_subdomains_small.txt"}'
 data = json.loads(json_data)
-
-#目的:あるドメインのサブドメインを列挙する
 
 #ターゲットドメイン名の取得
 target_domain = data["target_domain"]
@@ -30,7 +28,7 @@ with open('n0kovo_subdomains/n0kovo_subdomains_tiny.txt','r') as file:
     while True:
         line = file.readline()
         line = line.strip()
-        os.system(f'dig {line}.{target_domain} | grep -A 10 "ANSWER SECTION | grep "IN" | grep -e A -e CNAME -e TXT')
+        os.system(f'dig {line}.{target_domain} | grep -A 10 "ANSWER SECTION | grep "IN" | grep -e A -e CNAME -e TXT >> result.txt')
         if not line:
             break
 
